@@ -5,8 +5,11 @@ import com.example.yunus.trakyadepo.Model.DersSecimiFilter;
 import com.example.yunus.trakyadepo.Model.Gonderi;
 import com.example.yunus.trakyadepo.Model.GonderiFilter;
 import com.example.yunus.trakyadepo.Model.Soru;
+import com.example.yunus.trakyadepo.Model.Yorum;
 import com.example.yunus.trakyadepo.Model.errorType;
 import com.example.yunus.trakyadepo.Model.modelauth;
+import com.example.yunus.trakyadepo.Model.sorufilter;
+import com.example.yunus.trakyadepo.Model.yorum_filter;
 
 import java.util.List;
 
@@ -41,4 +44,21 @@ public interface IOgetValue {
 
     @POST("Uye/abone_sil")
     Call<errorType> abone_cıkar(@Body DersSecimiFilter dersfilter);
+
+    @POST("Soru/Soru_Ekle")
+    Call<errorType> soru_ekle(@Body sorufilter sorufilters);
+
+    @GET("Soru/Soru_Listele/{id}")
+    Call<List<Soru>> Soru_Listele(@Path("id") int id);
+
+    @GET("Soru/Soru_Goster/{id}")
+    Call<Soru> Soru_Goster(@Path("id") int id);
+
+    @GET("Yorum/yorum_listele/{id}")
+    Call<List<Yorum>> yorum_listele(@Path("id") int id);
+
+    @POST("Yorum/yorum_ekle")
+    Call<errorType> yorum_ekle(@Body yorum_filter yorumfilters);
+
+
 }

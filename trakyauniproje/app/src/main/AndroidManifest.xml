@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yunus.trakyadepo" >
+    package="com.example.yunus.trakyadepo">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,16 +15,14 @@
         android:icon="@drawable/trakya"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Trakya Depo" >
+            android:label="Trakya Depo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,28 +38,26 @@
             android:label="Ayarlar" />
         <activity
             android:name=".etkinlikActivity"
-            android:label="Etkinlik Hazırla">
-
-        </activity>
+            android:label="Etkinlik Hazırla"></activity>
         <activity
             android:name=".soruActivity"
-            android:label="Soru Hazırla"
-
-            />
+            android:label="Soru Hazırla" />
         <activity
             android:name=".DersSecimi"
-            android:label="Ders Secimi"
-
-            />
+            android:label="Ders Secimi" />
         <activity
             android:name=".newpostActivity"
-            android:label="Yeni Gönderi"
-            />
+            android:label="Yeni Gönderi" />
+
         <receiver
             android:name=".AlertReceiver"
             android:enabled="true"
-            android:exported="true" >
-        </receiver>
+            android:exported="true"></receiver>
+
+        <activity android:name=".Soru_detail"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".YorumActivity"
+           ></activity>
     </application>
 
 </manifest>

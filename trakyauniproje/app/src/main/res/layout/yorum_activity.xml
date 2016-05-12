@@ -22,19 +22,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14dp"
-                    android:text="Baslik "
-                    android:textStyle="bold"/>
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Başlık eklemek zorunludur.*"
-                    android:textSize="14dp"
-                    android:id="@+id/Sorubasliks"/>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -44,11 +31,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
-                    android:text="İçerik "
+                    android:text="Yorum "
                     android:textStyle="bold"
                     />
                 <EditText
-                    android:id="@+id/icerikSoru"
+                    android:id="@+id/icerikYorum"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="İçerik eklemek zorunludur.*"
@@ -58,17 +45,7 @@
                     android:gravity="top"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14dp"
-                    android:text="Ders Seç "
-                    android:textStyle="bold"/>
-                <Spinner
-                    android:id="@+id/spinnerderssec2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    />
+
             </LinearLayout>
 
 
@@ -88,8 +65,3 @@
     </LinearLayout>
 
 </LinearLayout>
-
-
-
-
-

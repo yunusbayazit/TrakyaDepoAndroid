@@ -176,11 +176,13 @@ implements NavigationView.OnNavigationItemSelectedListener {
         if (id == R.id.Ana_akis) {
             // Handle the camera action
         } else if (id == R.id.Etkinlik) {
-            Intent i = new Intent(getBaseContext(), DersSecimi.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(i);
+
 
         } else if (id == R.id.nav_slideshow) {
 
+        }else if (id == R.id.nav_derssec) {
+            Intent i = new Intent(getBaseContext(), DersSecimi.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(i);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.Ayarlar) {

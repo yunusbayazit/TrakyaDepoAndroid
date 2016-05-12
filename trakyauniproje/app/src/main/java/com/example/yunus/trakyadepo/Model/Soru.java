@@ -27,15 +27,69 @@ public class Soru {
     private String SoruBaslik;
     @Expose
     private String SoruIcerik;
+    private String Post_Resim;
+    private int DersID;
+
+    public int getDersID() {
+        return DersID;
+    }
+
+    public void setDersID(int dersID) {
+        DersID = dersID;
+    }
+
+    public String getYorum_Adedi() {
+        return Yorum_Adedi;
+    }
+
+    public void setYorum_Adedi(String yorum_Adedi) {
+        Yorum_Adedi = yorum_Adedi;
+    }
+
+    public String getDers_adi() {
+        return ders_adi;
+    }
+
+    public void setDers_adi(String ders_adi) {
+        this.ders_adi = ders_adi;
+    }
+
+    private String Yorum_Adedi;
+    public String getPost_Resim() {
+        return Post_Resim;
+    }
+
+    public void setPost_Resim(String post_Resim) {
+        Post_Resim = post_Resim;
+    }
+
+    public String getKullanıcı_Adı() {
+        return Kullanıcı_Adı;
+    }
+
+    public void setKullanıcı_Adı(String kullanıcı_Adı) {
+        Kullanıcı_Adı = kullanıcı_Adı;
+    }
+
+    public String getDers_Adı() {
+        return ders_adi;
+    }
+
+    public void setDers_Adı(String ders_Adı) {
+        ders_adi = ders_Adı;
+    }
+
+    private String Kullanıcı_Adı;
+    private String ders_adi;
     public int getSoruID() {
         return SoruID;
     }
-    public Soru(String Soru1,int User_ID,String Tarih_,String Soru_Baslik,String Soru_Icerik){
-        this.Soru1=Soru1;
+    public Soru(int dersID,int User_ID,String Tarih_,String Soru_Baslik,String Soru_Icerik){
         this.UserID=User_ID;
         this.Tarih=Tarih_;
         this.SoruBaslik=Soru_Baslik;
         this.SoruIcerik=Soru_Icerik;
+        this.DersID=dersID;
     }
 
     public void setSoruID(int SoruID) {

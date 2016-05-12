@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.yunus.trakyadepo.Adapter.RecyclerAdapter;
+import com.example.yunus.trakyadepo.Adapter.soruRecyclerAdapter;
 import com.example.yunus.trakyadepo.Infrastructure.IOgetValue;
 import com.example.yunus.trakyadepo.Infrastructure.Mainapp;
 import com.example.yunus.trakyadepo.Infrastructure.ws;
@@ -37,24 +39,28 @@ import retrofit.Response;
 /**
  * Created by yunus on 11.01.2016.
  */
-public class twofragment extends Fragment {
+public class twofragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private View view;
 
     private String title;//String for tab title
-   /*
+    SwipeRefreshLayout swipeLayout;
+
 
     private ImageView image;
 
     private ArrayList<Soru> a;
-    private static RecyclerView recyclerView;
     List<String> control;
-  //  ProgressDialog progress;
+    ProgressDialog progress;
     Context context;
-  //  private List<Soru> pliste= new ArrayList<>();
-*/
+    private static RecyclerView recyclerView;
+    @Bind(R.id.fabSoru)
+    FloatingActionButton fabgonderi;
+
+    private List<Soru> pliste = new ArrayList<>();
+
     public twofragment() {
-       // image.setImageResource(R.drawable.trakya);
+        // image.setImageResource(R.drawable.trakya);
     }
 
     public twofragment(String title) {
@@ -64,69 +70,74 @@ public class twofragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // progress = ProgressDialog.show(getActivity(), "", "Bilgiler Alınıyor...", true);
+        view = inflater.inflate(R.layout.sorufragment, container, false);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh2);
+        swipeLayout.setOnRefreshListener(this);
 
-        view = inflater.inflate(R.layout.twofragment, container, false);
+        ButterKnife.bind(this, view);
 
-
-/*
-        setRecyclerView();
-
-        IOgetValue service= ws.getwsValue();
-        Call<List<Soru>> control = service.groupList(Mainapp.UserPrefs.LogedInUser().get().getUserID());
+        IOgetValue service = ws.getwsValue();
+        Call<List<Soru>> control = service.Soru_Listele(Mainapp.UserPrefs.LogedInUser().get().getUserID());
         control.enqueue(new Callback<List<Soru>>() {
             @Override
             public void onResponse(Response<List<Soru>> response) {
-
+                progress = ProgressDialog.show(getActivity(), "", "Bilgiler Alınıyor...", true);
                 pliste = response.body();
+                setRecyclerView();
+                progress.dismiss();
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                progress.dismiss();
             }
         });
-        progress.dismiss();
-        */
+
         return view;
     }
+
     //Setting recycler view
     private void setRecyclerView() {
-/*
+
         recyclerView = (RecyclerView) view
-                .findViewById(R.id.recyclerView);
+                .findViewById(R.id.recyclerViewSoru);
         recyclerView.setHasFixedSize(true);
         recyclerView
                 .setLayoutManager(new LinearLayoutManager(getActivity()));//Linear Items
 
 
-
-
-        ERecyclerAdapter adapter = new RecyclerAdapter(getActivity(), pliste);
+        soruRecyclerAdapter adapter = new soruRecyclerAdapter(getActivity(), pliste);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
     }
-*/
-        /*
-    @OnClick(R.id.fab)
-    public void submit(View view) {
-        //Implementing tab selected listener over tablayout
-        int a;
 
-        a = MainActivity.viewPager.getCurrentItem();
-        switch (a) {
-            case 0:
-                Intent intt = new Intent(getActivity(), newpostActivity.class);
-                startActivity(intt);
-                break;
-            case 1:
-                Intent inlt = new Intent(getActivity(), soruActivity.class);
-                startActivity(inlt);
-                break;
-            case 2:
-                Intent inlst = new Intent(getActivity(), etkinlikActivity.class);
-                startActivity(inlst);
-                break;
-        }*/
+
+    @Override
+    public void onRefresh() {
+        IOgetValue service = ws.getwsValue();
+        Call<List<Soru>> control = service.Soru_Listele(Mainapp.UserPrefs.LogedInUser().get().getUserID());
+        control.enqueue(new Callback<List<Soru>>() {
+            @Override
+            public void onResponse(Response<List<Soru>> response) {
+
+                pliste = response.body();
+                setRecyclerView();
+                swipeLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                swipeLayout.setRefreshing(false);
+
+            }
+        });
     }
+
+    @OnClick(R.id.fabSoru)
+    public void submit(View view) {
+        Intent intt = new Intent(getActivity(), soruActivity.class);
+        startActivity(intt);
+    }
+
 }
